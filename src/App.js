@@ -1,10 +1,15 @@
 import React from 'react';
 import './App.css';
+import Sidebar from "./components/Sidebar";
+import Feed from "./components/Feed";
+import Widgets from "./components/Widgets";
 
 function App() {
   return (
-    <div className="App">
-<h1>Let's build a Twitter Clone !!!!</h1>
+    <div className="app">
+        <Sidebar/>
+        <Feed/>
+        <Widgets/>
     </div>
   );
 }
