@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {forwardRef} from 'react';
 import '../styles/post.css'
 import {Avatar} from "@material-ui/core";
 import VerifiedUserIcon from '@material-ui/icons/VerifiedUser';
@@ -7,25 +7,26 @@ import RepeatIcon from '@material-ui/icons/Repeat';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import PublishIcon from '@material-ui/icons/Publish';
 
-const Post = ({displayName, username, verified, text, image, avatar}) => {
+const Post = forwardRef(({displayName, username, verified, text, image, avatar},ref) => {
     return (
-        <div className="post">
+        <div className="post" ref={ref}>
             <div className="post__avatar">
-                <Avatar src={''}/>
+                <Avatar src={avatar}/>
             </div>
             <div className="post__body">
                 <div className="post__header">
                     <div className="post__headerText">
-                        <h3>Daniel Arango{" "}
-                        <span className="post__headerSpecial"><VerifiedUserIcon className="post__badge"/>@darango10</span></h3>
+                        <h3>{displayName}{" "}
+                            <span className="post__headerSpecial">
+                            {verified && <VerifiedUserIcon className="post__badge"/>}@{username}</span></h3>
                     </div>
                     <div className="post__headerDescription">
-                        <p>I challenge you to build a Twitter Clone with ReactJs</p>
+                        <p>{text}</p>
                     </div>
                 </div>
                 <img
-                    src="https://images.unsplash.com/photo-1563986768711-b3bde3dc821e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1048&q=80"
-                    alt=""/>
+                    src={image}
+                    alt={image}/>
                 <div className="post__footer">
                     <ChatBubbleOutlineIcon fontSize="small"/>
                     <RepeatIcon fontSize="small"/>
@@ -35,6 +36,6 @@ const Post = ({displayName, username, verified, text, image, avatar}) => {
             </div>
         </div>
     );
-};
+});
 
 export default Post;
